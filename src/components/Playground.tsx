@@ -3,7 +3,7 @@ import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import EditorPanel from './EditorPanel';
 import ResultPanel from './ResultPanel';
 import { fetchEndpoints } from '../api';
-import type { Endpoint, ScreenshotOptions, Preset } from '../types';
+import type { Endpoint, ScreenshotOptions, Preset, ClipProps } from '../types';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
@@ -96,11 +96,14 @@ function Playground() {
     device_scale_factor_level: 'normal',
     omit_background: false,
     timeout: null,
+    clip: null,
+    animations: 'disabled',
   });
 
   const [endpoints, setEndpoints] = useState<Endpoint[]>([]);
   const [selectedEndpoint, setSelectedEndpoint] = useState<string>('');
   const [customEndpoint, setCustomEndpoint] = useState<string>('');
+  const [clip, setClip] = useState<ClipProps | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -271,11 +274,13 @@ function Playground() {
                 endpoints={endpoints}
                 selectedEndpoint={selectedEndpoint}
                 customEndpoint={customEndpoint}
+                clip={clip}
                 onTemplateChange={setTemplate}
                 onTemplateDataChange={setTemplateData}
                 onOptionsChange={setOptions}
                 onEndpointChange={setSelectedEndpoint}
                 onCustomEndpointChange={setCustomEndpoint}
+                onClipChange={setClip}
                 onGenerate={handleGenerate}
                 loading={loading}
                 presets={PRESETS}

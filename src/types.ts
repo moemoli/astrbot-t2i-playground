@@ -13,7 +13,16 @@ export interface ScreenshotOptions {
   full_page?: boolean | null;
   device_scale_factor_level?: 'normal' | 'high' | 'ultra' | null;
   omit_background?: boolean | null;
+  animations?: 'allow' | 'disabled' | null;
   type?: 'png' | 'jpeg' | null;
+  clip?: ClipProps | null;
+}
+
+export interface ClipProps{
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 export interface GenerateRequest {
